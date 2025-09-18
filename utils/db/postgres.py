@@ -64,7 +64,7 @@ class Database:
     async def select_user(self, chat_id, **kwargs):
         sql = "SELECT * FROM users where chat_id = $1"
         sql, parameters = self.format_args(sql, parameters=kwargs)
-        return await self.execute(sql, chat_id *parameters, fetchrow=True)
+        return await self.execute(sql, chat_id, *parameters, fetchrow=True)
 
     async def count_users(self):
         sql = "SELECT COUNT(*) FROM users"
