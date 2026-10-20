@@ -1,3 +1,4 @@
+from utils.collage import build_collage_or_photo, elon_inline_button
 import ast
 from typing import List
 from aiogram import types, F, Router
@@ -52,18 +53,23 @@ async def first(callback_query: CallbackQuery, state: FSMContext, callback_data:
     await state.set_state(ToshkentVilHomeSotish.images)
 
 
+@toshvil_kv_router.message(ToshkentVilHomeSotish.images, F.photo, ~F.media_group_id)
+async def single_photo_handler(message: Message, state: FSMContext):
+    if not message.photo:
+        return
+    file_id = message.photo[-1].file_id
+    await state.update_data({"images": [file_id]})
+    await message.answer(umumiyMaydonyoz, parse_mode="HTML")
+    await state.set_state(ToshkentVilHomeSotish.umumiyMaydon)
+
+
 @toshvil_kv_router.message(ToshkentVilHomeSotish.images, F.media_group_id, F.content_type.in_({'photo'}))
 @media_group_handler
 async def album_handler(messages: List[types.Message], state: FSMContext):
     file_ids = []
-
-    for message in messages:
-        photos = message.photo
-
-        first_photo_size = photos[0]
-        first_file_id = first_photo_size.file_id
-
-        file_ids.append(first_file_id)
+    for msg in messages:
+        if msg.photo:
+            file_ids.append(msg.photo[-1].file_id)
 
     await state.update_data({
         "images": file_ids
@@ -473,12 +479,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         stringify = "".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
-        media_group.add_photo(photos[0], caption=cyrillic_text)
-
-        for file_id in photos[1:]:
-            media_group.add_photo(f"{file_id}")
-
-        await bot.send_media_group(chat_id=chat_id, media=media_group.build())
+        photo_obj = await build_collage_or_photo(bot, photos)
+        sent = await bot.send_photo(chat_id=chat_id, photo=photo_obj, caption=cyrillic_text, parse_mode="HTML")
+        if sent.photo:
+            await state.update_data({"collage_file_id": sent.photo[-1].file_id})
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn, parse_mode="HTML")
         await state.set_state(ToshkentVilHomeSotish.check)
     elif data['qoshimchaMalumot'] == "⏭️ Кейингиси":
@@ -513,12 +517,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         stringify = "".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
-        media_group.add_photo(photos[0], caption=cyrillic_text)
-
-        for file_id in photos[1:]:
-            media_group.add_photo(f"{file_id}")
-
-        await bot.send_media_group(chat_id=chat_id, media=media_group.build())
+        photo_obj = await build_collage_or_photo(bot, photos)
+        sent = await bot.send_photo(chat_id=chat_id, photo=photo_obj, caption=cyrillic_text, parse_mode="HTML")
+        if sent.photo:
+            await state.update_data({"collage_file_id": sent.photo[-1].file_id})
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn, parse_mode="HTML")
         await state.set_state(ToshkentVilHomeSotish.check)
 
@@ -554,12 +556,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         stringify = "".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
-        media_group.add_photo(photos[0], caption=cyrillic_text)
-
-        for file_id in photos[1:]:
-            media_group.add_photo(f"{file_id}")
-
-        await bot.send_media_group(chat_id=chat_id, media=media_group.build())
+        photo_obj = await build_collage_or_photo(bot, photos)
+        sent = await bot.send_photo(chat_id=chat_id, photo=photo_obj, caption=cyrillic_text, parse_mode="HTML")
+        if sent.photo:
+            await state.update_data({"collage_file_id": sent.photo[-1].file_id})
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn, parse_mode="HTML")
         await state.set_state(ToshkentVilHomeSotish.check)
 
@@ -596,12 +596,10 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         stringify = "".join(array)
         cyrillic_text = to_cyrillic(stringify)
 
-        media_group.add_photo(photos[0], caption=cyrillic_text)
-
-        for file_id in photos[1:]:
-            media_group.add_photo(f"{file_id}")
-
-        await bot.send_media_group(chat_id=chat_id, media=media_group.build())
+        photo_obj = await build_collage_or_photo(bot, photos)
+        sent = await bot.send_photo(chat_id=chat_id, photo=photo_obj, caption=cyrillic_text, parse_mode="HTML")
+        if sent.photo:
+            await state.update_data({"collage_file_id": sent.photo[-1].file_id})
         await bot.send_message(chat_id=chat_id, text=check_text, reply_markup=checkbtn, parse_mode="HTML")
         await state.set_state(ToshkentVilHomeSotish.check)
 
@@ -648,16 +646,12 @@ async def check(message: types.Message, state: FSMContext):
             stringify = "".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
-            media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
+            collage_id = data.get("collage_file_id") or photos[0]
+            printer = await bot.send_photo(chat_id=group_id, photo=collage_id, caption=cyrillic_text, parse_mode="HTML")
 
-            for file_id in photos[1:]:
-                media_group.add_photo(f"{file_id}")
-
-            printer = await bot.send_media_group(chat_id=group_id, media=media_group.build())
-
-            message_id = str(printer[-1].message_id)
+            message_id = str(printer.message_id)
             userId = str(message.chat.id)
-            await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
+            await db.add_yer_data(user_id=userId, photos=str([collage_id]), captions=cyrillic_text, message_id=message_id)
 
             await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=toshvil_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
@@ -695,16 +689,12 @@ async def check(message: types.Message, state: FSMContext):
             stringify = "".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
-            media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
+            collage_id = data.get("collage_file_id") or photos[0]
+            printer = await bot.send_photo(chat_id=group_id, photo=collage_id, caption=cyrillic_text, parse_mode="HTML")
 
-            for file_id in photos[1:]:
-                media_group.add_photo(f"{file_id}")
-
-            printer = await bot.send_media_group(chat_id=group_id, media=media_group.build())
-
-            message_id = str(printer[-1].message_id)
+            message_id = str(printer.message_id)
             userId = str(message.chat.id)
-            await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
+            await db.add_yer_data(user_id=userId, photos=str([collage_id]), captions=cyrillic_text, message_id=message_id)
 
             await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=toshvil_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
@@ -741,16 +731,12 @@ async def check(message: types.Message, state: FSMContext):
             stringify = "".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
-            media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
+            collage_id = data.get("collage_file_id") or photos[0]
+            printer = await bot.send_photo(chat_id=group_id, photo=collage_id, caption=cyrillic_text, parse_mode="HTML")
 
-            for file_id in photos[1:]:
-                media_group.add_photo(f"{file_id}")
-
-            printer = await bot.send_media_group(chat_id=group_id, media=media_group.build())
-
-            message_id = str(printer[-1].message_id)
+            message_id = str(printer.message_id)
             userId = str(message.chat.id)
-            await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
+            await db.add_yer_data(user_id=userId, photos=str([collage_id]), captions=cyrillic_text, message_id=message_id)
 
             await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=toshvil_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
@@ -788,16 +774,12 @@ async def check(message: types.Message, state: FSMContext):
             stringify = "".join(array)
             cyrillic_text = to_cyrillic(stringify)+data32+data33+data34+data35
 
-            media_group.add_photo(photos[0], caption=cyrillic_text, parse_mode="HTML")
+            collage_id = data.get("collage_file_id") or photos[0]
+            printer = await bot.send_photo(chat_id=group_id, photo=collage_id, caption=cyrillic_text, parse_mode="HTML")
 
-            for file_id in photos[1:]:
-                media_group.add_photo(f"{file_id}")
-
-            printer = await bot.send_media_group(chat_id=group_id, media=media_group.build())
-
-            message_id = str(printer[-1].message_id)
+            message_id = str(printer.message_id)
             userId = str(message.chat.id)
-            await db.add_yer_data(user_id=userId, photos=str(photos), captions=cyrillic_text, message_id=message_id)
+            await db.add_yer_data(user_id=userId, photos=str([collage_id]), captions=cyrillic_text, message_id=message_id)
 
             await bot.send_message(chat_id=group_id, text="Буйруқ Беринг", reply_markup=toshvil_group)
             await bot.send_message(chat_id=chat_id, text=success_text, reply_markup=start, parse_mode="HTML")
@@ -816,22 +798,19 @@ async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
     media_group = MediaGroupBuilder()
 
     data = await db.yer_get_one_user_data(message_id=chat_id)
-
-    photos_string = data['photos']
-
-    try:
-        photos_list = ast.literal_eval(photos_string)
-
-    except (ValueError, SyntaxError) as e:
-        await bot.send_message(chat_id=call.message.chat.id, text="Xatolik mavjud.")
+    if not data:
+        if call.message:
+            await bot.send_message(chat_id=call.message.chat.id, text="Xatolik mavjud.")
         return
 
-    media_group.add_photo(photos_list[0], caption=data['captions'], parse_mode="HTML")
+    photos_string = data['photos']
+    try:
+        photos_list = ast.literal_eval(photos_string) if photos_string.startswith('[') else [photos_string]
+        photo_id = photos_list[0]
+    except (ValueError, SyntaxError):
+        photo_id = photos_string
 
-    for file_id in photos_list[1:]:
-        media_group.add_photo(file_id)
-
-    await bot.send_media_group(chat_id=toshvil_id, media=media_group.build())
+    await bot.send_photo(chat_id=toshvil_id, photo=photo_id, caption=data['captions'], reply_markup=elon_inline_button, parse_mode="HTML")
     await bot.send_message(chat_id=int(data['user_id']), text=success_message)
     await bot.send_message(chat_id=call.message.chat.id, text=success_message)
     
