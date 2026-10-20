@@ -1,20 +1,22 @@
-# Hovli Questions
-andijon_id = -1001747207701
-buxoro_id = -1001747207701
-fargona_id = -1001747207701
-jizzax_id = -1001747207701
-namangan_id = -1001747207701
-navoiy_id = -1001747207701
-qashqa_id = -1001747207701
-qoraqalpoq_id = -1001747207701
-samarqand_id = -1001747207701
-sirdaryo_id = -1001747207701
-surxon_id = -1001747207701
-toshsh_id = -1001747207701
-toshvil_id = -1001747207701
-xorazm_id = -1001747207701
+# Kvartira Questions
+import config
 
-group_id = -1001747207701
+andijon_id = config.ANDIJON_CHANNEL_ID
+buxoro_id = config.BUXORO_CHANNEL_ID
+fargona_id = config.FARGONA_CHANNEL_ID
+jizzax_id = config.JIZZAX_CHANNEL_ID
+namangan_id = config.NAMANGAN_CHANNEL_ID
+navoiy_id = config.NAVOIY_CHANNEL_ID
+qashqa_id = config.QASHQA_CHANNEL_ID
+qoraqalpoq_id = config.QORAQALPOQ_CHANNEL_ID
+samarqand_id = config.SAMARQAND_CHANNEL_ID
+sirdaryo_id = config.SIRDARYO_CHANNEL_ID
+surxon_id = config.SURXON_CHANNEL_ID
+toshsh_id = config.TOSHSH_CHANNEL_ID
+toshvil_id = config.TOSHVIL_CHANNEL_ID
+xorazm_id = config.XORAZM_CHANNEL_ID
+
+group_id = config.ADMIN_GROUP_ID
 
 hovlitanlandi = "Kvartira tanlandi"
 

@@ -14,25 +14,12 @@ from keyboards.inline.data import AdminXabarYuborish
 class SendPoster(StatesGroup):
     waiting_for_text = State()
 
+import config
+
 # Initialize the router
 group_router = Router()
 
-CHANNEL_IDS = [
-    -1001747207701,  # andijon_id
-    -1001747207701,  # buxoro_id
-    -1001747207701,  # fargona_id
-    -1001747207701,  # jizzax_id
-    -1001747207701,  # namangan_id
-    -1001747207701,  # navoiy_id
-    -1001747207701,  # qashqa_id
-    -1001747207701,  # qoraqalpoq_id
-    -1001747207701,  # samarqand_id
-    -1001747207701,  # sirdaryo_id
-    -1001747207701,  # surxon_id
-    -1001747207701,  # toshsh_id
-    -1001747207701,  # toshvil_id
-    -1001747207701   # xorazm_id
-]
+CHANNEL_IDS = config.ALL_CHANNEL_IDS
 
 @group_router.message(IsGroup(), Command('show'))
 async def sendmessage(message: Message):
