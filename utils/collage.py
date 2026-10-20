@@ -21,7 +21,7 @@ elon_inline_button = InlineKeyboardMarkup(
 def create_collage(
     images: List[Image.Image],
     width: int = 1200,
-    padding: int = 10,
+    padding: int = 6,
     bg_color: Tuple[int, int, int] = (255, 255, 255),
 ) -> Image.Image:
     """
@@ -78,6 +78,7 @@ def create_collage(
 async def build_collage_or_photo(
     bot: Bot,
     photo_ids: List[str],
+    padding: int = 6,
 ) -> Union[str, BufferedInputFile]:
     """
     If 1 photo_id is passed, returns the original photo_id directly (zero processing/download overhead).
@@ -97,7 +98,7 @@ async def build_collage_or_photo(
 
     # Download images concurrently (up to 10)
     images = await asyncio.gather(*[_fetch_photo(fid) for fid in photo_ids[:10]])
-    collage = create_collage(images)
+    collage = create_collage(images, padding=padding)
 
     output = io.BytesIO()
     collage.save(output, format="JPEG", quality=92, optimize=True)
