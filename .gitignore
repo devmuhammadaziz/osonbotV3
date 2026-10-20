@@ -1,8 +1,31 @@
-.idea
-.vscode
-__pycache__
-venv
-env
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
 
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables and secrets
 .env
+.env.local
+.env.*.local
+
+# Logs
 logs.log
+*.log
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Operating System files
+.DS_Store
+Thumbs.db
