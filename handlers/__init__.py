@@ -58,7 +58,7 @@ from handlers.user.YerSotish.XorazmHandler import xorazm_yer_router
 from handlers.groups.sendMessage import group_router
 
 from aiogram import Router
-from typing import NoReturn, List
+from typing import List
 
 routers: List[Router] = [user_router, uyJoy_router, andijon_router, buxoro_router, \
     fargona_router, jizzax_router, namangan_router, navoiy_router, qashqa_router, \
@@ -76,6 +76,6 @@ routers: List[Router] = [user_router, uyJoy_router, andijon_router, buxoro_route
 
 
 
-def register_handlers(main_router: Router) -> NoReturn:
+def register_handlers(main_router: Router) -> None:
     for router in routers:
         main_router.include_router(router)

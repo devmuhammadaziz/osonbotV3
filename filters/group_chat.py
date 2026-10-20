@@ -7,6 +7,7 @@ class IsGroup(BaseFilter):
         return message.chat.type in (
             ChatType.GROUP,
             ChatType.SUPERGROUP,
+            ChatType.CHANNEL,
         )
 
 class IsGroupCall(BaseFilter):
@@ -16,5 +17,6 @@ class IsGroupCall(BaseFilter):
             return call.message.chat.type in (
                 ChatType.GROUP,
                 ChatType.SUPERGROUP,
+                ChatType.CHANNEL,
             )
         return False

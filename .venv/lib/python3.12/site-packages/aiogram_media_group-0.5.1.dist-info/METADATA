@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: aiogram-media-group
+Version: 0.5.1
+Summary: Aiogram handler for media groups (also known as albums)
+Home-page: https://github.com/deptyped/aiogram-media-group
+License: MIT
+Author: deptyped
+Author-email: deptyped@gmail.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Dist: aiogram (>2)
+Project-URL: Repository, https://github.com/deptyped/aiogram-media-group
+Description-Content-Type: text/markdown
+
+# aiogram-media-group
+
+aiogram handler for media groups (also known as albums)
+
+### Supported drivers
+
+- [In-memory](aiogram_media_group/storages/memory.py)
+- [Redis](aiogram_media_group/storages/redis.py) (aiogram 2.x only)
+- [Mongo DB](aiogram_media_group/storages/mongo.py) (aiogram 2.x only)
+
+### Install
+
+```bash
+pip install aiogram-media-group
+# or
+poetry add aiogram-media-group
+```
+
+### Usage
+
+Minimal usage example:
+
+```python
+from aiogram_media_group import media_group_handler
+
+@dp.message_handler(MediaGroupFilter(is_media_group=True), content_types=ContentType.PHOTO)
+@media_group_handler
+async def album_handler(messages: List[types.Message]):
+    for message in messages:
+        print(message)
+```
+
+Checkout [examples](https://github.com/deptyped/aiogram-media-group/blob/main/examples) for complete usage examples
+

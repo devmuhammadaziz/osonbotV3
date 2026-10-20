@@ -4,7 +4,12 @@ from aiogram.types import Message
 
 class IsAdminFilter(BaseFilter):
     def __init__(self, ADMINS: Union[int, List[int]]):
-        self.ADMINS = set(map(int, ADMINS))
+        if isinstance(ADMINS, int):
+            self.ADMINS = {ADMINS}
+        else:
+            self.ADMINS = set(map(int, ADMINS))
 
     async def __call__(self, message: Message) -> bool:
+        if not message.from_user:
+            return False
         return message.from_user.id in self.ADMINS

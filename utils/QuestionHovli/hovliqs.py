@@ -1,20 +1,20 @@
 # Hovli Questions
-andijon_id = -1001354536408
-buxoro_id = -1001931707915
-fargona_id = -1001936259107
-jizzax_id = -1001907168333
-namangan_id = -1001979059129
-navoiy_id = -1001861296377
-qashqa_id = -1001964423395
-qoraqalpoq_id = -1001933742457
-samarqand_id = -1001525881310
-sirdaryo_id = -1001397117335
-surxon_id = -1001705636608
-toshsh_id = -1001916481063
-toshvil_id = -1001916481063
-xorazm_id = -1001766589776
+andijon_id = -1001747207701
+buxoro_id = -1001747207701
+fargona_id = -1001747207701
+jizzax_id = -1001747207701
+namangan_id = -1001747207701
+navoiy_id = -1001747207701
+qashqa_id = -1001747207701
+qoraqalpoq_id = -1001747207701
+samarqand_id = -1001747207701
+sirdaryo_id = -1001747207701
+surxon_id = -1001747207701
+toshsh_id = -1001747207701
+toshvil_id = -1001747207701
+xorazm_id = -1001747207701
 
-group_id = -1002234398619
+group_id = -1001747207701
 
 hovlitanlandi = "Hovli tanlandi"
 

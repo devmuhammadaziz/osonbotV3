@@ -905,12 +905,18 @@ async def check(message: types.Message, state: FSMContext):
 
 
 @surxon_router.callback_query(IsGroupCall(), TasdiqlashSurxon.filter(F.word == "surxontasdiqlash"))
-async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
+async def surxon_tasdiqlash(call: types.CallbackQuery, state: FSMContext):
+    if not call.message:
+        return
     chat_id = str(call.message.message_id - 1)
 
     media_group = MediaGroupBuilder()
 
     data = await db.yer_get_one_user_data(message_id=chat_id)
+    if not data:
+        if call.message:
+            await bot.send_message(chat_id=call.message.chat.id, text="Ma'lumot topilmadi.")
+        return
 
     photos_string = data['photos']
 
@@ -918,7 +924,8 @@ async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
         photos_list = ast.literal_eval(photos_string)
 
     except (ValueError, SyntaxError) as e:
-        await bot.send_message(chat_id=call.message.chat.id, text="Xatolik mavjud.")
+        if call.message:
+            await bot.send_message(chat_id=call.message.chat.id, text="Xatolik mavjud.")
         return
 
     media_group.add_photo(photos_list[0], caption=data['captions'], parse_mode="HTML")
@@ -928,17 +935,22 @@ async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
 
     await bot.send_media_group(chat_id=surxon_id, media=media_group.build())
     await bot.send_message(chat_id=int(data['user_id']), text=success_message)
-    await bot.send_message(chat_id=call.message.chat.id, text=success_message)
-    
+    if call.message:
+        await bot.send_message(chat_id=call.message.chat.id, text=success_message)
 
 
 @surxon_router.callback_query(IsGroupCall(), BekorQilishSurxon.filter(F.word=="surxonbekor"))
-async def dokumentlar(call: types.CallbackQuery, state: FSMContext):
-
+async def surxon_bekor(call: types.CallbackQuery, state: FSMContext):
+    if not call.message:
+        return
     chat_id = str(call.message.message_id - 1)
 
-
     data = await db.yer_get_one_user_data(message_id=chat_id)
+    if not data:
+        if call.message:
+            await bot.send_message(chat_id=call.message.chat.id, text="Ma'lumot topilmadi.")
+        return
 
     await bot.send_message(chat_id=int(data['user_id']), text=fail_message)
-    await bot.send_message(chat_id=call.message.chat.id, text=fail_message)
+    if call.message:
+        await bot.send_message(chat_id=call.message.chat.id, text=fail_message)

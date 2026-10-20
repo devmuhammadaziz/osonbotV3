@@ -1,0 +1,12 @@
+search-path = [
+    "."
+]
+site-package-path = [
+    ".venv/lib/python3.12/site-packages"
+]
+
+[errors]
+missing-attribute = "ignore"
+bad-argument-type = "ignore"
+redefinition = "ignore"
+unsupported-operation = "ignore"

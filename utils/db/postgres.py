@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Optional, Any
 
 import asyncpg
 from asyncpg import Connection
@@ -29,6 +29,10 @@ class Database:
         execute: bool = False,
     ):
         
+        if not self.pool:
+            raise RuntimeError("Database pool is not initialized. Call create() first.")
+
+        result: Any = None
         async with self.pool.acquire() as connection:
             connection: Connection
             async with connection.transaction():
@@ -85,6 +89,6 @@ class Database:
         sql = "INSERT INTO yer(user_id, photos, captions, message_id) VALUES($1, $2, $3, $4) returning *"
         return await self.execute(sql, user_id, photos, captions, message_id, fetchrow=True)
 
-    async def yer_get_one_user_data(self, message_id: int):
+    async def yer_get_one_user_data(self, message_id: Union[int, str]):
         sql = "SELECT * FROM yer WHERE message_id = $1"
-        return await self.execute(sql, message_id, fetchrow=True)
+        return await self.execute(sql, str(message_id), fetchrow=True)

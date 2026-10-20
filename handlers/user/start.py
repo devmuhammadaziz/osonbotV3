@@ -37,10 +37,10 @@ async def check_contact(message: Message):
         logger.info("No contact information found in the message.")
         return
 
-    contact = str(message.contact.phone_number)
+    contact = message.contact.phone_number
     telegram_id = str(message.chat.id)
-    full_name = message.from_user.full_name
-    username = message.from_user.username if message.from_user.username else "null"
+    full_name = message.from_user.full_name if message.from_user else "User"
+    username = message.from_user.username if (message.from_user and message.from_user.username) else "null"
 
     logger.info(f"Attempting to add user: {full_name}, {username}, {telegram_id}, {contact}")
     
