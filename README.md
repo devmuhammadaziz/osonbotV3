@@ -46,3 +46,26 @@ Telegram bot for real estate announcements with automatic image collaging, Postg
    ```bash
    sudo systemctl status osonbot
    ```
+
+---
+
+### Option 3: PM2 Process Manager
+1. Install uv and Python 3.12:
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   source $HOME/.local/bin/env
+   uv python install 3.12
+   uv venv --python 3.12 .venv
+   uv pip install -r requirements.txt
+   ```
+2. Start with PM2:
+   ```bash
+   pm2 start app.py --name osonbot --interpreter .venv/bin/python
+   pm2 save
+   ```
+3. Logs and status:
+   ```bash
+   pm2 status
+   pm2 logs osonbot
+   ```
+
