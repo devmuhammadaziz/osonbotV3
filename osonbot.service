@@ -1,0 +1,16 @@
+[Unit]
+Description=OsonBot Telegram Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/osonbot
+ExecStart=/opt/osonbot/.venv/bin/python app.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/opt/osonbot/logs.log
+StandardError=append:/opt/osonbot/logs.log
+
+[Install]
+WantedBy=multi-user.target

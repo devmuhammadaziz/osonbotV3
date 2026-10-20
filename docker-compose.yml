@@ -1,0 +1,9 @@
+services:
+  bot:
+    build: .
+    container_name: osonbot
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./logs.log:/app/logs.log
