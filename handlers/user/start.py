@@ -22,7 +22,11 @@ async def bot_start(message: Message, state: FSMContext):
     user = await db.get_one_user(chat_id=telegram_id)
     
     if user:
-        await message.answer("Ассалому алайкум!", reply_markup=ReplyKeyboardRemove())
+        rm = await message.answer("⏳", reply_markup=ReplyKeyboardRemove())
+        try:
+            await rm.delete()
+        except Exception:
+            pass
         await message.answer("<b> Ҳудудни танланг  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")  
     else:
         await message.answer("Телефон рақамингизни тасдиқланг", reply_markup=send_contact) 
@@ -47,11 +51,19 @@ async def check_contact(message: Message, state: FSMContext):
         if not user:
             await db.add_user(name=full_name, username=username, chat_id=telegram_id, phone=contact)
         
-        await message.answer("Рақамингиз муваффақиятли қабул қилинди! ✅", reply_markup=ReplyKeyboardRemove())
+        rm = await message.answer("⏳", reply_markup=ReplyKeyboardRemove())
+        try:
+            await rm.delete()
+        except Exception:
+            pass
         await message.answer("<b> Ҳудудни танланг  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
     except Exception as error:
         logger.error(f"Error saving user contact: {error}")
-        await message.answer("Рақамингиз қабул қилинди ✅", reply_markup=ReplyKeyboardRemove())
+        rm = await message.answer("⏳", reply_markup=ReplyKeyboardRemove())
+        try:
+            await rm.delete()
+        except Exception:
+            pass
         await message.answer("<b> Ҳудудни танланг  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
 
 
@@ -66,7 +78,11 @@ async def starter_bot(call: CallbackQuery, state: FSMContext, callback_data: Sta
 @user_router.message(F.text.casefold() == "start", any_state)
 async def restart_cmd(message: Message, state: FSMContext):
     await state.clear()
-    await message.answer("Ассалому алайкум!", reply_markup=ReplyKeyboardRemove())
+    rm = await message.answer("⏳", reply_markup=ReplyKeyboardRemove())
+    try:
+        await rm.delete()
+    except Exception:
+        pass
     await message.answer("<b> Ҳудудни танланг  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
 
 
@@ -79,7 +95,11 @@ async def stop(message: Message, state: FSMContext):
 @user_router.message(F.text == "/restart", any_state)
 async def restart(message: Message, state: FSMContext):
     await state.clear()
-    await message.answer("Ассалому алайкум!", reply_markup=ReplyKeyboardRemove())
+    rm = await message.answer("⏳", reply_markup=ReplyKeyboardRemove())
+    try:
+        await rm.delete()
+    except Exception:
+        pass
     await message.answer("<b> Ҳудудни танланг  </b>", reply_markup=allRegionsKvartira, parse_mode="HTML")
 
 
