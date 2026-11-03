@@ -191,12 +191,12 @@ import config
 
 link_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,
                                    inline_keyboard=[
-                                       [InlineKeyboardButton(text="✍️ ЭЪЛОН БЕРИШ", url=f"https://t.me/{getattr(config, 'BOT_USERNAME', 'demo_bot_2022Bot')}")]
+                                       [InlineKeyboardButton(text="ЭЪЛОН БЕРИШ", url=f"https://t.me/{getattr(config, 'BOT_USERNAME', 'demo_bot_2022Bot')}")]
                                    ])
 
 elon_inline_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=1,
                                           inline_keyboard=[
-                                              [InlineKeyboardButton(text="✍️ ЭЪЛОН БЕРИШ", url=f"https://t.me/{getattr(config, 'BOT_USERNAME', 'demo_bot_2022Bot')}")]
+                                              [InlineKeyboardButton(text="ЭЪЛОН БЕРИШ", url=f"https://t.me/{getattr(config, 'BOT_USERNAME', 'demo_bot_2022Bot')}")]
                                           ])
 
 start_button = InlineKeyboardMarkup(resize_keyboard=True, row_width=2,

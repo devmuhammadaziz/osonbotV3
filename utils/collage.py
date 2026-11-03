@@ -13,7 +13,7 @@ import config
 BOT_URL = f"https://t.me/{getattr(config, 'BOT_USERNAME', 'demo_bot_2022Bot')}"
 elon_inline_button = InlineKeyboardMarkup(
     inline_keyboard=[
-        [InlineKeyboardButton(text="✍️ ЭЪЛОН БЕРИШ", url=BOT_URL)]
+        [InlineKeyboardButton(text="ЭЪЛОН БЕРИШ", url=BOT_URL)]
     ]
 )
 
