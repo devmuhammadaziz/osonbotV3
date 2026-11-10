@@ -538,9 +538,9 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-        result = [buxororegion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+        result = [data2, data13, data14, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                   data10,
-                  data12, data13, data14, data15]
+                  data12, data15]
 
         array = []
 
@@ -579,9 +579,9 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
         data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-        result = [buxororegion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+        result = [data2, data13, data14, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                   data10,
-                  data12, data13, data14, data15, data16]
+                  data12, data15, data16]
 
         array = []
 
@@ -621,9 +621,9 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-        result = [buxororegion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+        result = [data2, data13, data14, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                   data10,
-                  data11, data12, data13, data14, data15]
+                  data11, data12, data15]
 
         array = []
 
@@ -664,9 +664,9 @@ async def umumiyMaydon(message: types.Message, state: FSMContext):
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
         data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-        result = [buxororegion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+        result = [data2, data13, data14, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                   data10,
-                  data11, data12, data13, data14, data15, data16]
+                  data11, data12, data15, data16]
 
         array = []
 
@@ -717,9 +717,9 @@ async def check(message: types.Message, state: FSMContext):
             data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-            result = [buxororegion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+            result = [data2, data13, data14, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                       data10,
-                      data12, data13, data14, data15]
+                      data12, data15]
 
             array = []
 
@@ -763,9 +763,9 @@ async def check(message: types.Message, state: FSMContext):
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
             data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-            result = [buxororegion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+            result = [data2, data13, data14, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                       data10,
-                      data12, data13, data14, data15, data16]
+                      data12, data15, data16]
 
             array = []
 
@@ -808,9 +808,9 @@ async def check(message: types.Message, state: FSMContext):
             data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-            result = [buxororegion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+            result = [data2, data13, data14, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                       data10,
-                      data11, data12, data13, data14, data15]
+                      data11, data12, data15]
 
             array = []
 
@@ -854,9 +854,9 @@ async def check(message: types.Message, state: FSMContext):
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
             data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-            result = [buxororegion, data2, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
+            result = [data2, data13, data14, data3, data4, oshxona, hammom, data6, data7, data8, data9, gaz, svet, suv, kanal,
                       data10,
-                      data11, data12, data13, data14, data15, data16]
+                      data11, data12, data15, data16]
 
             array = []
 

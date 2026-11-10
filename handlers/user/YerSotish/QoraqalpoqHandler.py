@@ -387,8 +387,8 @@ async def telNumbertwo(message: types.Message, state: FSMContext):
         data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-        result = [qoraqalpoqregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
-                  data12, data13, data14, data15]
+        result = [data2, data13, data14, data3, data9, gaz, svet, suv, kanal, data10, document,
+                  data12, data15]
 
         array = []
 
@@ -422,8 +422,8 @@ async def telNumbertwo(message: types.Message, state: FSMContext):
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
         data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-        result = [qoraqalpoqregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
-                  data12, data13, data14, data15, data16]
+        result = [data2, data13, data14, data3, data9, gaz, svet, suv, kanal, data10, document,
+                  data12, data15, data16]
 
         array = []
 
@@ -458,8 +458,8 @@ async def telNumbertwo(message: types.Message, state: FSMContext):
         data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-        result = [qoraqalpoqregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
-                  data11, data12, data13, data14, data15]
+        result = [data2, data13, data14, data3, data9, gaz, svet, suv, kanal, data10, document,
+                  data11, data12, data15]
 
         array = []
 
@@ -495,8 +495,8 @@ async def telNumbertwo(message: types.Message, state: FSMContext):
         data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
         data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-        result = [qoraqalpoqregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
-                  data11, data12, data13, data14, data15, data16]
+        result = [data2, data13, data14, data3, data9, gaz, svet, suv, kanal, data10, document,
+                  data11, data12, data15, data16]
 
         array = []
 
@@ -542,8 +542,8 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-            result = [qoraqalpoqregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
-                      data12, data13, data14, data15]
+            result = [data2, data13, data14, data3, data9, gaz, svet, suv, kanal, data10, document,
+                      data12, data15]
 
             array = []
 
@@ -582,8 +582,8 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
             data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-            result = [qoraqalpoqregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
-                      data12, data13, data14, data15, data16]
+            result = [data2, data13, data14, data3, data9, gaz, svet, suv, kanal, data10, document,
+                      data12, data15, data16]
 
             array = []
 
@@ -621,8 +621,8 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             data14 = "📌 Мўлжал: " + data['moljal'] + "\n\n"
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n\n"
 
-            result = [qoraqalpoqregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
-                      data11, data12, data13, data14, data15]
+            result = [data2, data13, data14, data3, data9, gaz, svet, suv, kanal, data10, document,
+                      data11, data12, data15]
 
             array = []
 
@@ -661,8 +661,8 @@ async def check(message: types.Message, state: FSMContext, bot: Bot):
             data15 = "☎️ Тел: " + data['telNumberOne'] + "\n"
             data16 = "☎️ Тел: " + data['telNumberTwo'] + "\n\n"
 
-            result = [qoraqalpoqregion, data2, data3, data9, gaz, svet, suv, kanal, data10, document,
-                      data11, data12, data13, data14, data15, data16]
+            result = [data2, data13, data14, data3, data9, gaz, svet, suv, kanal, data10, document,
+                      data11, data12, data15, data16]
 
             array = []
 
